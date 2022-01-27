@@ -1,0 +1,27 @@
+<%- include("header") -%>
+
+    <div class="box" id="heading">
+        <h1> <%= 'nothing' %></h1>
+    </div>
+
+    <div class="box" >
+
+        <% globalarray.forEach(function(el, index) {   %>
+           
+            <div class="item">
+                <input type="checkbox" >
+                <p>  <%= el.title %>  </p>
+            </div>
+           
+             
+         <%  });     %>
+
+         <form class="item" action="/insert" method="post">
+            <input type="text" name="title" id="input" placeholder="New item" autocomplete="off"> <br/>
+            <input type="text" name="description" id="input" placeholder="description" autocomplete="off">  
+            <button type="submit" id="submit" name="submit" value=<%= 'nothing' %> >+</button>
+        </form>
+
+    </div>
+
+    <%- include("footer") -%>
