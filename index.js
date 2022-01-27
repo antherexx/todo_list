@@ -165,14 +165,15 @@ let qurey=`UPDATE todotable SET description='${objfromuser.description}' WHERE i
 });
 //-----------------------------------------------------------------------
 //delete task 
-app.delete('/delete',function(req,res){
+app.get('/delete/:id',function(req,res){
     var objfromuser={
         id :req.body.id ,
         title : req.body.title ,
         description:req.body.description,
         status:0}
+        var id =req.params.id ; 
 
-let qurey=`DELETE FROM todotable  WHERE id ='${objfromuser.id}';`;
+let qurey=`DELETE FROM todotable  WHERE id ='${id}';`;
 
 
     pool.getConnection((err,connection)=>{
