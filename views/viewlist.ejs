@@ -9,7 +9,7 @@
         <% globalarray.forEach(function(el, index) { let done ; if(el.status){done="done"}else{done="not done"}  %>
            
             <div class="item">
-                <div><%= done %></div>
+              <div class ="upside" >  <div ><% if(el.status){ %> <input type="checkbox" checked ><% }else {%><input type="checkbox" ><%} %> <a href="/updatedone/<%=el.id%>">Done</a></div><a href="/delete/<%=el.id %>"> delete </a></div>
                 <h2><%= el.title %></h2>
                 <p><%= el.description%></p>
             </div>

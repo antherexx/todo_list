@@ -183,7 +183,7 @@ let qurey=`DELETE FROM todotable  WHERE id ='${id}';`;
     connection.query(qurey,(errr,row)=>{
         connection.release();
         if(!errr){
-            res.send("it is deleted");
+            res.redirect('/');
         }else{
             console.log(errr);
         }
