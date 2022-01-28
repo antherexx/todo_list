@@ -184,6 +184,7 @@ let qurey=`DELETE FROM todotable  WHERE id ='${id}';`;
         connection.release();
         if(!errr){
             res.redirect('/');
+           
         }else{
             console.log(errr);
         }
