@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const { title } = require('process');
 const { globalAgent } = require('http');
+const querystring = require('querystring');
 
 
 //all gloabal variables and classes 
@@ -117,8 +118,12 @@ app.post('/updatetitle',function(req,res){
         description:req.body.updatedesc,
         status:0}
 
-let qurey=`UPDATE todotable SET title='${objfromuser.title}' WHERE id='${objfromuser.id}';`;
 
+let qurey=`UPDATE todotable SET title='${objfromuser.title}' WHERE id='${objfromuser.id}';`;
+        if(objfromuser.title===""){
+            var temp = `?id=${objfromuser.id}&desc=${objfromuser.description}`;
+            return res.redirect(`/updatedesc/${temp}`)
+        }
 
     pool.getConnection((err,connection)=>{
     if(err) throw err ; 
@@ -139,14 +144,10 @@ let qurey=`UPDATE todotable SET title='${objfromuser.title}' WHERE id='${objfrom
 });
 //----------------------------------------------------------------------------
 //updating task description
-app.put('/updatedesc',function(req,res){
-    var objfromuser={
-        id :req.body.id ,
-        title : req.body.title ,
-        description:req.body.description,
-        status:0}
+app.get('/updatedesc',function(req,res){
+    
 
-let qurey=`UPDATE todotable SET description='${objfromuser.description}' WHERE id='${objfromuser.id}';`;
+let qurey=`UPDATE todotable SET description='${req.query.desc}' WHERE id='${req.query.id}';`;
 
 
     pool.getConnection((err,connection)=>{
