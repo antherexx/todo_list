@@ -16,7 +16,6 @@ const pool = mysql.createPool({
     user : 'root',
     password : '',
     database : 'todolist'
-
 }); 
 //
 
@@ -111,11 +110,11 @@ app.post('/insert',function(req,res){
 });
 
 //-----------------------------------------------------------------------------------------------
-app.put('/updatetitle',function(req,res){
+app.post('/updatetitle',function(req,res){
     var objfromuser={
         id :req.body.id ,
-        title : req.body.title ,
-        description:req.body.description,
+        title : req.body.updatetitle ,
+        description:req.body.updatedesc,
         status:0}
 
 let qurey=`UPDATE todotable SET title='${objfromuser.title}' WHERE id='${objfromuser.id}';`;
@@ -128,7 +127,8 @@ let qurey=`UPDATE todotable SET title='${objfromuser.title}' WHERE id='${objfrom
     connection.query(qurey,(errr,row)=>{
         connection.release();
         if(!errr){
-            res.send("it is updated ");
+            console.log("it is updated ");
+            res.redirect("/");
         }else{
             console.log(errr);
         }

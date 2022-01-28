@@ -5,7 +5,15 @@
     </div>
 
     <div class="box" >
+        <div class="update_task"> 
+            <form action="/updatetitle" method="POST">
+                <input class="updin" type="text" name="id" id="" placeholder="id">
+                <input class="updin" type="text" name="updatetitle" placeholder="title">
+                <input class="updin" type="text" name="updatedesc" id="" placeholder="descripiton">
+                <button class="update_button"  type="submit"> update </button>
+            </form>
 
+        </div>
         <% globalarray.forEach(function(el, index) { let done ; if(el.status){done="done"}else{done="not done"}  %>
            
             <div class="item">
@@ -20,7 +28,7 @@
          <form class="item" action="/insert" method="post">
             <input type="text" name="title" id="input" placeholder="New item" autocomplete="off"> <br/>
             <input type="text" name="description" id="input" placeholder="description" autocomplete="off">  
-            <button type="submit" id="submit" name="submit" value=<%= 'nothing' %> >+</button>
+            <button type="submit" class="submitb" id="submit" name="submit" value=<%= 'nothing' %> >+</button>
         </form>
 
     </div>
